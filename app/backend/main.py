@@ -1,11 +1,13 @@
-# app/backend/main.py
 from fastapi import FastAPI
 from .api_sprites import router as sprites_router
+from .routers import user_sprites, trade_listings
 
 app = FastAPI(title="Sprite Inventory API")
 
 # Register routers
 app.include_router(sprites_router)
+app.include_router(user_sprites.router)
+app.include_router(trade_listings.router)
 
 # Health check
 @app.get("/healthz")
